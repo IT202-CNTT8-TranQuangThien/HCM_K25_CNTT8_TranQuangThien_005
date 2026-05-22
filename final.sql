@@ -102,9 +102,8 @@ where sta_tus = 'Completed'
 	and p.manufacture_date < '2000-01-01';
     
 -- xóa
--- delete table transaction_logs
--- where log_time < '2024-05-20';
-
+delete from transaction_logs
+where log_time < '2024-05-20';
 
 -- truy vấn cơ bản
 -- câu 1:
@@ -158,8 +157,15 @@ from stock_orders as so
 inner join employees as e on so.employee_id = e.employee_id
 where so.sta_tus != 'Cancelled';
 
-
-
-
-
-
+-- TRIGGER
+-- CAU 1
+-- DELIMITER //
+-- create trigger trg_after_stock
+-- from stock_orders
+-- for each row
+-- begin
+-- 	if new.sta_tus = 'Completed' then
+--     
+--     
+--     end ;
+-- DELIMITER ;	
